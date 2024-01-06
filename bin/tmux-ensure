@@ -4,10 +4,15 @@ set -e
 
 main() {
   local is_nested=$(tmux-is-nested)
+  local is_running=$(tmux-is-running)
   if [ "$is_nested" = "true" ]; then
     echo "inside tmux"
     # do nothiin
+  elif [ "$is_running" = "true" ]; then
+    echo "attach tmux"
+    tmux attach
   else
+    echo "start tmux"
     mux "home"
   fi
 }
