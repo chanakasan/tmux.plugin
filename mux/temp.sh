@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. ~/dotfiles/lib/lib-tmux.sh
+. ~/nex-bash/lib/lib-tmux.sh
 
 main() {
   local wd=$HOME/temp/any

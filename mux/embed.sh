@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. ~/dotfiles/lib/lib-tmux.sh
+. ~/nex-bash/lib/lib-tmux.sh
 
 main() {
   local wd=$HOME/spaces/work/embed/pages-next
