@@ -1,0 +1,7 @@
+bind -n M-r popup -E -x 25 -y 10 -w 40% -h 60% "\
+  find ~/nex-run/* -type f |\
+  fzf --reverse --delimiter / --with-nth -1 |\
+  sh"
+
+bind -n M-e popup -E -x 25 -y 10 -w 60% -h 90% "\
+  vim -c 'cd ~/nex-run' $(find ~/nex-run/* -type f | fzf --height 40% --reverse --delimiter / --with-nth -1)"

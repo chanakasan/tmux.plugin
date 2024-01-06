@@ -1,0 +1,1 @@
+bind -n M-p popup -E -x 10 -y 10 -w 82% -h 100%
