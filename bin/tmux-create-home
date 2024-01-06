@@ -1,0 +1,1 @@
+tmux new-session -Ad -s "home" -n "main"
