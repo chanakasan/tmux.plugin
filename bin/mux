@@ -23,11 +23,11 @@ mux_ex() {
 }
 
 mux_at() {
-  local out=$(tmux list-sessions 2>&1)
-  if [[ "$out" == *"no server running"* ]]; then
-    _mux_start "home"
-  else 
+  local out=$(tmux-is-running)
+  if [ $out == "true" ]; then
     tmux at
+  else 
+    _mux_start "home"
   fi
 }
 

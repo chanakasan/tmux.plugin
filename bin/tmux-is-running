@@ -1,0 +1,10 @@
+main() {
+  local out=$(tmux list-sessions 2>&1)
+  if [[ "$out" == *"no server running"* ]]; then
+    echo false
+  else 
+    echo true
+  fi
+}
+
+main
