@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-#
 # prints true or false
 
 set +e
