@@ -1,1 +1,0 @@
-source $nex_tmux_path/src/bash/easy_nav.bash
