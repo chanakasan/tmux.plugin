@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
-
+# Usage
+# tmux-session-exist <session>
+#
 # prints true or false
 
 set +e
 
-_get_grep_status() {
+get_grep_status() {
   tmux list-sessions | sed -E 's/:.*$//' | grep -q "$pattern"
   local status="$?"
   echo $status
 }
 
-_echo_result() {
+send_result() {
   if [ "$result" = "0" ]; then
     echo true
   else
@@ -21,8 +23,8 @@ _echo_result() {
 main() {
   local name=$1
   local pattern="^$name$"
-  local result=$(_get_grep_status)
-  _echo_result
+  local result=$(get_grep_status)
+  send_result
   exit 0
 }
 

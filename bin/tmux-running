@@ -1,3 +1,8 @@
+#!/usr/bin/env bash
+#
+# returns "true" or "false"
+#
+
 main() {
   local out=$(tmux list-sessions 2>&1)
   if [[ "$out" == *"no server running"* ]]; then

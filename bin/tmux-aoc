@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Usage
+# tmux-aoc <session>
+#
+# Attaches if session exist
+# Otherwise creates a new session in pwd
+
+main() {
+  local name=${1:-null}
+  validate_name
+  local does_exist=$(tmux-session-exist $name)
+  debug does_exist $does_exist
+  if [ $does_exist == "true" ]; then
+    tmux-attach $name
+  else
+    tmux-create $name
+  fi
+}
+
+validate_name() {
+  debug name $name
+  if [ $name == "null" ]; then
+    abort
+  fi
+}
+
+abort() {
+  debug aborting
+  exit 0
+}
+
+# _END_
+debug_script=tmux_aoc
+debug() {
+  _tmux_print_debug $debug_script "$@"
+}
+
+main "$@"

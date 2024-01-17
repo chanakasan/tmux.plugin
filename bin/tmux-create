@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# Usage
+# tmux-create <session> [<opts>]
+#
+# Creates a new session if it doesn't exist
+
+set -e
+
+main() {
+  local name=${1:-null}
+  validate_name
+  local d_flag=$(get_d_flag $2)
+  local is_nested=$(tmux-nested)
+  local does_exist=$(tmux-session-exist "$name")
+  debug is_nested $is_nested
+  debug does_exist $does_exist
+  if [[ "$does_exist" == "true" ]]; then
+    abort
+  fi
+  create_session
+}
+
+get_d_flag() {
+  if [[ "$1" = "-d" ]]; then
+    echo "-d"
+  else
+    echo ""
+  fi
+}
+
+create_session() {
+  debug "creating session"
+  local window_name="main"
+  TMUX= tmux new-session -d -s $name -n "$window_name"
+  tmux switch-client -t $name
+}
+
+validate_name() {
+  debug name $name
+  if [ $name == "null" ]; then
+    abort
+  fi
+}
+
+abort() {
+  debug aborting
+  exit 0
+}
+
+# _END_
+debug_script=tmux_create
+debug() {
+  _tmux_print_debug $debug_script "$@"
+
+}
+
+main "$@"

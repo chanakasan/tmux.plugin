@@ -1,51 +1,51 @@
 #!/usr/bin/env bash
+# Usage
+# tmux-attach <session>
+#
+# Attaches if session exist
 
-debug_on=true
-
-debug() {
-  if [[ "$debug_on" != "true" ]]; then
-    return
-  fi
-  local k=$1
-  local v=$2
-  if [[ -n $v ]]; then
-    echo "[debug] $k = $v"
+main() {
+  local name=${1:-null}
+  validate_name
+  local is_nested=$(tmux-nested)
+  local does_exist=$(tmux-session-exist "$name")
+  debug is_nested $is_nested
+  debug does_exist $does_exist
+  if [ $does_exist != "true" ]; then
+    abort
+  elif [ "$is_nested" == "true" ]; then
+    use_switch_client
   else
-    echo "[debug] $k"
+    use_attach_session
   fi
 }
 
-get_session_name() {
-  if [[ -z $1 ]]; then
-    echo "error-in-session-name"
-    exit -1
-  fi
-  echo "$1"
-}
-
-switch_client() {
+use_switch_client() {
   debug "using switch-client"
   tmux switch-client -t $name
 }
 
-attach_session() {
+use_attach_session() {
   debug "using attach-session"
   tmux attach-session -t $name
 }
 
-main() {
-  local name=${1:-null}
-  local is_nested=$(tmux-is-nested)
+abort() {
+  debug aborting
+  exit 0
+}
+
+validate_name() {
   debug name $name
-  debug is_nested $is_nested
   if [ $name == "null" ]; then
-    debug aborting
-    return
-  elif [ "$is_nested" == "true" ]; then
-    switch_client
-  else
-    attach_session
+    abort
   fi
+}
+
+# _END_
+debug_script=tmux_attach
+debug() {
+  _tmux_print_debug $debug_script "$@"
 }
 
 main "$@"

@@ -1,0 +1,24 @@
+main() {
+  local debug_on=$(_tmux_debug_flag)
+  local script="$1"
+  local key="$2"
+  local value="$3"
+  if [ -z "$key" ]; then
+    return
+  fi
+  print_debug
+}
+
+print_debug() {
+  if [ "$debug_on" != "true" ]; then
+    return
+  fi
+  if [ -z "$value" ]; then
+    echo "[$script] $key"
+  else
+    echo "[$script] $key = $value"
+  fi
+}
+
+# _end_
+main "$@"

@@ -1,1 +1,9 @@
-tmux new-session -A -s "home" -n "main"
+#!/usr/bin/env bash
+
+main() {
+  local wd=$HOME
+  cd $wd
+  tmux new-session -A -s "home" -n "main"
+}
+
+main

@@ -3,18 +3,32 @@
 set -e
 
 main() {
-  local is_nested=$(tmux-is-nested)
-  local is_running=$(tmux-is-running)
+  local is_nested=$(tmux-nested)
+  local is_running=$(tmux-running)
+  debug is_running $is_running
+  debug is_nested $is_nested
+
   if [ "$is_nested" = "true" ]; then
-    echo "inside tmux"
+    debug "inside tmux"
+    debug "aborting"
     # do nothiin
-  elif [ "$is_running" = "true" ]; then
-    echo "attach tmux"
-    tmux attach
-  else
-    echo "start tmux"
-    tmux-create-home
+    return
   fi
+
+  if [ "$is_running" == "true" ]; then
+    debug "attaching tmux"
+    tmux attach
+    return
+  fi
+
+  debug "starting tmux"
+  tmux-create-home
+}
+
+# _END_
+debug_script=tmux_ensure
+debug() {
+  _tmux_print_debug $debug_script "$@"
 }
 
 main
