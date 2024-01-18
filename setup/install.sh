@@ -3,11 +3,13 @@
 set -e
 
 main() {
+  local title="Nex Tmux"
+  local dir_name="nex-tmux"
   local start_text='__nex_tmux_start'
   local end_text='__nex_tmux_end'
   local bashrc="$HOME/.bashrc"
-  local nex_tmux_path=$(get_root_path)/nex-tmux
-  echo " Installing - Nex Tmux"
+  local nex_tmux_path=$(get_root_path)/$dir_name
+  echo " Installing - $title"
   remove_from_bashrc
   copy_to_bashrc
   create_symlinks
