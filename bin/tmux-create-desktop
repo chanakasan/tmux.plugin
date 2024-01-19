@@ -4,7 +4,13 @@ main() {
   local wd=$HOME/desk
   mkdir -p $wd
   cd $wd
+  debug "using tmux-create"
   tmux-create "desktop"
 }
 
+# _end_
+debug_script=tmux_create_desktop
+debug() {
+  _tmux_print_debug $debug_script "$@"
+}
 main
