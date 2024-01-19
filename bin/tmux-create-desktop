@@ -3,9 +3,10 @@
 main() {
   local wd=$HOME/desk
   local name="desktop"
+  local window_name="main"
   mkdir -p $wd
   cd $wd
-  tmux new-session -A -s $name -n "main"
+  tmux-create-session $name
 }
 
 main

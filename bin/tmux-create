@@ -9,6 +9,7 @@ set -e
 main() {
   local name=${1:-null}
   validate_name
+  local window_name="main"
   local is_nested=$(tmux-nested)
   local does_exist=$(tmux-session-exist "$name")
   debug is_nested $is_nested
@@ -25,14 +26,12 @@ main() {
 
 create_session_nested() {
   debug "creating session (nested)"
-  local window_name="main"
   TMUX= tmux new-session -d -s $name -n "$window_name"
   tmux switch-client -t $name
 }
 
 create_session_normal() {
   debug "creating session"
-  local window_name="main"
   tmux new-session -s $name -n "$window_name"
 }
 
