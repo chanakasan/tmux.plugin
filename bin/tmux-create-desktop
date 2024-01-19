@@ -2,11 +2,9 @@
 
 main() {
   local wd=$HOME/desk
-  local name="desktop"
-  local window_name="main"
   mkdir -p $wd
   cd $wd
-  tmux-create-session $name
+  tmux-create "desktop"
 }
 
 main
