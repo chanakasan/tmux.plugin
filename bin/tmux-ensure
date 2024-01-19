@@ -22,7 +22,7 @@ main() {
   fi
 
   debug "starting tmux"
-  tmux-create-home
+  tmux-create-desktop
 }
 
 # _END_

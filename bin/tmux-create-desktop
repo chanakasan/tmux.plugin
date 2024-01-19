@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+main() {
+  local wd=$HOME/desk
+  local name="desktop"
+  mkdir -p $wd
+  cd $wd
+  tmux new-session -A -s $name -n "main"
+}
+
+main
