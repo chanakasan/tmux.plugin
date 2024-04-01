@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 main() {
-  local wd=$HOME/desk
+  local wd=$HOME/desktop
   mkdir -p $wd
   cd $wd
   debug "using tmux-create"
