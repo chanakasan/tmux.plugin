@@ -1,5 +1,5 @@
+source $(nex _config)
 bash $nex_support/plugin/install/run_default.sh "tmux"
-export PATH=$nex_tmux_path/bin:$PATH
 
 steps() {
   create_symlinks
