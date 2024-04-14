@@ -1,22 +1,12 @@
-#!/bin/bash
+bash $nex_support/plugin/install/run_default.sh "tmux"
+export PATH=$nex_tmux_path/bin:$PATH
 
-set -e
-
-export nex_tmux_path=$(dirname "$0")/..
-source $nex_tmux_path/setup/config.sh
-source $nex_support_path/src/plugin/install/helpers.sh
-
-main() {
-  start
-  validate
-  remove_from_bashrc
-  copy_to_bashrc
+steps() {
   create_symlinks
-  finish
 }
 
 create_symlinks() {
   ln -nfs $nex_tmux_path/src/main.conf $HOME/.tmux.conf
 }
 
-main
+steps
