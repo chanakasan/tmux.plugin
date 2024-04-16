@@ -1,4 +1,5 @@
 source $(nex _config)
+nex_tmux_path=$(nex _plugin tmux)
 bash $nex_support/plugin/install/run_default.sh "tmux"
 
 steps() {
