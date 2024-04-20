@@ -1,10 +1,10 @@
 main() {
-  local nex_tmux_path=$(nex _plugin "tmux")
+  local base_dir=$(nex _plugin "tmux")
   create_symlinks
 }
 
 create_symlinks() {
-  ln -nfs $nex_tmux_path/src/main.conf $HOME/.tmux.conf
+  ln -nfs $base_dir/src/main.conf $HOME/.tmux.conf
 }
 
 main
