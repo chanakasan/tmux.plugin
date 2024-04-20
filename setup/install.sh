@@ -1,4 +1,5 @@
 main() {
+  local nex_tmux_path=$(nex _plugin "tmux")
   create_symlinks
 }
 
