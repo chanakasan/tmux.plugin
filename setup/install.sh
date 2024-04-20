@@ -1,8 +1,4 @@
-source $(nex _config)
-nex_tmux_path=$(nex _plugin tmux)
-bash $nex_support/plugin/install/run_default.sh "tmux"
-
-steps() {
+main() {
   create_symlinks
 }
 
@@ -10,4 +6,4 @@ create_symlinks() {
   ln -nfs $nex_tmux_path/src/main.conf $HOME/.tmux.conf
 }
 
-steps
+main
