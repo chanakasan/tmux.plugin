@@ -1,5 +1,10 @@
-nx_tmux_root=$(nex _plugin "tmux")
+create_symlinks() {
+  local root=$(nex _plugin "tmux")
+  echo " Install - tmux.plugin"
+  ln -nfs $root/.internal/main.conf $HOME/.tmux.conf
+  echo " => symlinked .tmux.conf"
+  echo " done"
+  echo
+}
 
-echo " Install - tmux.plugin"
-ln -nfs $nx_tmux_root/.internal/main.conf $HOME/.tmux.conf
-echo " => symlinked .tmux.conf"
+create_symlinks
