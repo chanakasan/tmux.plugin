@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 main() {
-  local wd=$HOME/desktop
+  local wd=$HOME/home
   mkdir -p $wd
   cd $wd
   debug "using tmux-create"
-  tmux-create "desktop"
+  tmux-create "home"
 }
 
 # _end_
