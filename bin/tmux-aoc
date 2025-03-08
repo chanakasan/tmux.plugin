@@ -19,7 +19,7 @@ main() {
 
 validate_name() {
   debug name $name
-  if [ $name == "null" ]; then
+  if [[ $name == "null" ]]; then
     abort
   fi
 }
